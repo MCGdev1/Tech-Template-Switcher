@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment
+.env
+.env.local
+
+# Build
+dist/
+build/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Excluded pages (per user request to only commit Homepage)
+visualizer.html
+visualizer.css
+visualizer.js
+features.html
+features.css
+pricing.html
+pricing.css
+gallery.html
+*.png
+project_summary.md
