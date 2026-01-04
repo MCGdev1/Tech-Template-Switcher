@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D Architecture Gallery | Monorepo Visualizer Premium</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:title" content="3D Architecture Gallery | Monorepo Visualizer Premium">
+  <meta name="description"
+    content="Explore our visualization technologies in a stunning 3D gallery. Discover Molecular Mapping, Conflict Oracle, and more.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Carousel Specific Styles */
+    .gallery-container-wrapper {
+      position: relative;
+      height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1200px;
+      margin: 4rem 0;
+      overflow: visible;
+    }
+
+    .gallery-carousel {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform-style: preserve-3d;
+    }
+
+    .gallery-card {
+      position: absolute;
+      width: 320px;
+      height: 420px;
+      transition: all 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+      transform-style: preserve-3d;
+      cursor: pointer;
+    }
+
+    .card-border {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      padding: 2px;
+      background: linear-gradient(to bottom right, var(--color-from), var(--color-to));
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-content {
+      width: 100%;
+      height: 100%;
+      background: rgba(10, 9, 8, 0.95);
+      backdrop-filter: blur(20px);
+      border-radius: 14px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card-icon {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 24px;
+      color: var(--text-white);
+      filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-white);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .card-desc {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text-dim);
+      line-height: 1.6;
+    }
+
+    .nav-button {
+      position: absolute;
+      z-index: 30;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border-color);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-button:hover {
+      background: var(--primary-color);
+      border-color: var(--primary-color);
+      transform: scale(1.1);
+      box-shadow: 0 0 20px var(--primary-color-dim);
+    }
+
+    .nav-button svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .nav-button.prev {
+      left: 20px;
+    }
+
+    .nav-button.next {
+      right: 20px;
+    }
+
+    .indicators {
+      margin-top: 2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .dot {
+      height: 6px;
+      border-radius: 999px;
+      background: var(--text-dim);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      width: 6px;
+      padding: 0;
+    }
+
+    .dot.active {
+      background: var(--primary-color);
+      width: 24px;
+      box-shadow: 0 0 10px var(--primary-color-dim);
+    }
+
+    .counter {
+      font-family: var(--font-mono);
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 768px) {
+      .gallery-container-wrapper {
+        height: 500px;
+      }
+
+      .gallery-card {
+        width: 280px;
+        height: 380px;
+      }
+
+      .nav-button.prev {
+        left: 0;
+      }
+
+      .nav-button.next {
+        right: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="animated-bg">
+    <div class="lava-blob"></div>
+  </div>
+
+  <!-- Navigation -->
+  <div id="navbar-placeholder"></div>
+
+  <main class="max-width" style="padding-top: 8rem; min-height: 100vh;">
+    <div class="section-header">
+      <h1 class="section-title">3D GALLERY</h1>
+      <p class="section-desc">Explore our visualization technologies. <span style="color: var(--primary-color);">Drag to
+          rotate</span>, click to expand.</p>
+    </div>
+
+    <!-- 3D Carousel Container -->
+    <div class="carousel-container">
+      <div class="carousel-stage" id="stage">
+        <!-- Panel 1 -->
+        <div class="carousel-panel">
+          <div class="panel-content">
+            <div class="panel-visual">
+              <svg viewBox="0 0 24 24" class="icon-xl">
+                <circle cx="12" cy="12" r="2" fill="currentColor" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" opacity="0.7" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" opacity="0.7" transform="rotate(60 12 12)" />
+              </svg>
+            </div>
+            <h3 class="panel-title">MOLECULAR MAPPING</h3>
+            <p class="panel-desc">Force-directed graphs that reveal the hidden structure of your dependencies.</p>
+          </div>
+          <div class="panel-reflection"></div>
+        </div>
+
+        <!-- Panel 2 -->
+        <div class="carousel-panel">
+          <div class="panel-content">
+            <div class="panel-visual" style="color: #FF4D56;">
+              <svg viewBox="0 0 24 24" class="icon-xl">
+                <path d="M12 2c-.5 3-1 5-3 7-1.5 1.5-2 3-2 5 0 3.3 2.7 6 6 6s6-2.7 6-6c0-2-1-3.5-2-5-2-2-2.5-4-3-7z"
+                  fill="currentColor" />
+              </svg>
+            </div>
+            <h3 class="panel-title">CONFLICT ORACLE</h3>
+            <p class="panel-desc">AI-powered prediction engine that spots merge conflicts before they happen.</p>
+          </div>
+          <div class="panel-reflection"></div>
+        </div>
+
+        <!-- Panel 3 -->
+        <div class="carousel-panel">
+          <div class="panel-content">
+            <div class="panel-visual" style="color: #FFA500;">
+              <svg viewBox="0 0 24 24" class="icon-xl">
+                <path d="M12 3 L22 19 L2 19 Z" stroke="currentColor" fill="none" stroke-width="1.5" />
+              </svg>
+            </div>
+            <h3 class="panel-title">BLAST RADIUS</h3>
+            <p class="panel-desc">Visual impact analysis showing exactly what breaks when you change a line of code.</p>
+          </div>
+          <div class="panel-reflection"></div>
+        </div>
+
+        <!-- Panel 4 -->
+        <div class="carousel-panel">
+          <div class="panel-content">
+            <div class="panel-visual" style="color: #8B5CF6;">
+              <svg viewBox="0 0 24 24" class="icon-xl" fill="none" stroke="currentColor" stroke-width="1.5">
+                <polygon points="12,2 20,7 20,17 12,22 4,17 4,7" />
+                <circle cx="12" cy="12" r="2" fill="currentColor" />
+              </svg>
+            </div>
+            <h3 class="panel-title">NEURAL OPTIMIZER</h3>
+            <p class="panel-desc">Machine learning algorithms that rewrite your build configurations for speed.</p>
+          </div>
+          <div class="panel-reflection"></div>
+        </div>
+
+        <!-- Panel 5 -->
+        <div class="carousel-panel">
+          <div class="panel-content">
+            <div class="panel-visual" style="color: #10B981;">
+              <svg viewBox="0 0 24 24" class="icon-xl" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="2" fill="currentColor" />
+                <ellipse cx="12" cy="12" rx="10" ry="4" opacity="0.7" transform="rotate(120 12 12)" />
+              </svg>
+            </div>
+            <h3 class="panel-title">QUANTUM CACHE</h3>
+            <p class="panel-desc">Distributed caching that accelerates CI/CD pipelines by up to 10x.</p>
+          </div>
+          <div class="panel-reflection"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="carousel-controls">
+      <button class="control-btn" id="prevBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M15 18l-6-6 6-6" />
+        </svg>
+      </button>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <button class="control-btn" id="nextBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9 18l6-6-6-6" />
+        </svg>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+  <script src="app.js"></script>
+  <!-- Carousel Logic -->
+  <script>
+    const stage = document.getElementById('stage');
+    const panels = document.querySelectorAll('.carousel-panel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const progressFill = document.getElementById('progressFill');
+
+    let currDeg = 0;
+    const panelCount = panels.length;
+    const angle = 360 / panelCount;
+
+    // Use a fixed radius for z-translate
+    const zOffset = 400;
+
+    // Initialize positions
+    panels.forEach((panel, i) => {
+      panel.style.transform = `rotateY(${i * angle}deg) translateZ(${zOffset}px)`;
+    });
+
+    function updateCarousel() {
+      stage.style.transform = `rotateY(${currDeg}deg)`;
+
+      // Update progress visualization (pseudo-logic)
+      let normalizedDeg = Math.abs(currDeg % 360);
+      let percentage = (normalizedDeg / 360) * 100;
+      if (currDeg > 0) percentage = 100 - percentage;
+      progressFill.style.width = percentage + '%';
+
+      // Update visual active state
+      panels.forEach((p, i) => {
+        // Calculate abstract rotation alignment
+        let panelRot = (i * angle) + currDeg;
+        panelRot = panelRot % 360;
+        // Simple visibility check logic
+        if (Math.abs(panelRot) < angle / 2 || Math.abs(panelRot) > 360 - (angle / 2)) {
+          p.style.opacity = '1';
+          p.style.filter = 'drop-shadow(0 0 20px var(--primary-color))';
+        } else {
+          p.style.opacity = '0.5';
+          p.style.filter = 'none';
+        }
+      });
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currDeg -= angle; // rotate 'left'
+      updateCarousel();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      currDeg += angle; // rotate 'right'
+      updateCarousel();
+    });
+
+    // Initial call
+    updateCarousel();
+  </script>
+  <script src="app.js"></script>
+</body>
+
+</html>

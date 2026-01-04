@@ -1,0 +1,287 @@
+/* Visualizer Specific Styles - Adapting User HUD to Luxe Theme */
+
+.visualizer-container {
+  display: grid;
+  grid-template-columns: 320px 1fr 360px;
+  height: calc(100vh - 80px);
+  /* Adjust for navbar */
+  background: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Sidebar & Panels */
+.viz-sidebar,
+.viz-right-panel {
+  background: rgba(10, 9, 8, 0.7);
+  backdrop-filter: blur(20px);
+  border-inline: 1px solid var(--border-color);
+  overflow-y: auto;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  z-index: 10;
+}
+
+.viz-sidebar::-webkit-scrollbar,
+.viz-right-panel::-webkit-scrollbar {
+  width: 4px;
+}
+
+.viz-sidebar::-webkit-scrollbar-thumb,
+.viz-right-panel::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
+
+/* HUD Cards */
+.hud-card {
+  background: rgba(26, 24, 23, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+  transition: all 0.3s ease;
+}
+
+.hud-card:hover {
+  border-color: var(--primary-color);
+  background: rgba(26, 24, 23, 0.8);
+}
+
+.hud-title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-white);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Package List Items */
+.pkg-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  border: 1px solid transparent;
+}
+
+.pkg-item:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--primary-color);
+  transform: translateX(4px);
+}
+
+.pkg-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+
+.pkg-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.pkg-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.pkg-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pkg-meta {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+/* Canvas Area */
+.viz-main {
+  position: relative;
+  background: radial-gradient(circle at center, #1a1817 0%, #0a0908 100%);
+}
+
+#visualization {
+  width: 100%;
+  height: 100%;
+}
+
+/* Canvas Controls Overlay */
+.viz-controls {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: rgba(10, 9, 8, 0.8);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  z-index: 20;
+}
+
+.ctrl-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.ctrl-btn:hover,
+.ctrl-btn.active {
+  background: var(--primary-color);
+  color: white;
+}
+
+/* Top View Toggle in Header style */
+.viz-header {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  background: var(--bg-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.hud-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.hud-stat-box {
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.hud-stat-val {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.hud-stat-label {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Detail Panel Large Card */
+.detail-focus {
+  background: linear-gradient(135deg, rgba(255, 89, 22, 0.1), transparent);
+  border: 1px solid var(--primary-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+/* Physics Panel Floating */
+.physics-hud {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  width: 220px;
+}
+
+.input-range {
+  width: 100%;
+  margin-top: 0.5rem;
+  accent-color: var(--primary-color);
+}
+
+.range-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+/* Node Popup Tooltip */
+.node-popup {
+  position: fixed;
+  width: 280px;
+  background: rgba(10, 9, 8, 0.95);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--primary-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.9);
+  transition: 0.3s ease;
+  z-index: 1000;
+  pointer-events: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.node-popup.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1);
+}
+
+@media (max-width: 1200px) {
+  .visualizer-container {
+    grid-template-columns: 300px 1fr;
+  }
+
+  .viz-right-panel {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .visualizer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .viz-sidebar {
+    display: none;
+  }
+}
+
+/* User Request: Reduce SVG size in sidebars to 1/3 */
+.viz-sidebar .hud-title svg,
+.viz-right-panel .hud-title svg {
+  width: 6px !important;
+  height: 6px !important;
+}
+
+.viz-sidebar .pkg-icon svg {
+  width: 7px !important;
+  height: 7px !important;
+}
+
+.viz-right-panel #detailIcon svg {
+  width: 8px !important;
+  height: 8px !important;
+}

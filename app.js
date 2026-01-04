@@ -3,22 +3,34 @@
  * Handles global interactions, scroll effects, and animations.
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // ---------------------------------------------------------
+  // 0. Component Loader
+  // ---------------------------------------------------------
+  // Injects the Navbar and Footer into placeholders.
+  await loadComponent('navbar-placeholder', 'components/navbar.html');
+  await loadComponent('footer-placeholder', 'components/footer.html');
+
+  // Highlight active link
+  setActiveLink();
+
   // ---------------------------------------------------------
   // 1. Navigation Bar Scroll Effect
   // ---------------------------------------------------------
   // Adds a semi-transparent background and reduces padding when
   // the user scrolls down to create a "sticky" compact effect.
   const navbar = document.querySelector('.navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar.style.padding = '1rem 0';
-      navbar.style.backgroundColor = 'rgba(10, 9, 8, 0.95)';
-    } else {
-      navbar.style.padding = '1.5rem 0';
-      navbar.style.backgroundColor = 'transparent';
-    }
-  });
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.style.padding = '1rem 0';
+        navbar.style.backgroundColor = 'rgba(10, 9, 8, 0.95)';
+      } else {
+        navbar.style.padding = '1.5rem 0';
+        navbar.style.backgroundColor = 'transparent';
+      }
+    });
+  }
 
   // ---------------------------------------------------------
   // 2. Intersection Observer for Reveal Animations
@@ -52,14 +64,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Moves the background "lava blob" slightly based on mouse position
   // to create a dynamic, depth-based feel.
   const lavaBlob = document.querySelector('.lava-blob');
-  document.addEventListener('mousemove', (e) => {
-    // Normalize coordinates (0 to 1)
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
+  if (lavaBlob) {
+    document.addEventListener('mousemove', (e) => {
+      // Normalize coordinates (0 to 1)
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
 
-    // Apply translation scale
-    lavaBlob.style.transform = `translate(${x * 20}px, ${y * 20}px) scale(1.2)`;
-  });
+      // Apply translation scale
+      lavaBlob.style.transform = `translate(${x * 20}px, ${y * 20}px) scale(1.2)`;
+    });
+  }
 
   // ---------------------------------------------------------
   // 4. Smooth Scrolling
@@ -78,6 +92,48 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+/**
+ * Loads a HTML component into a specific element ID.
+ * @param {string} elementId - The ID of the container element.
+ * @param {string} componentPath - The path to the HTML component file.
+ */
+async function loadComponent(elementId, componentPath) {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+
+  try {
+    const response = await fetch(componentPath);
+    if (response.ok) {
+      const html = await response.text();
+      element.innerHTML = html;
+    } else {
+      console.error(`Failed to load ${componentPath}: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error(`Error loading ${componentPath}:`, error);
+  }
+}
+
+/**
+ * Sets the active state for the current page in the navbar.
+ */
+function setActiveLink() {
+  const path = window.location.pathname;
+  const page = path.split("/").pop().replace('.html', '') || 'index';
+
+  // Default to 'home' if page is empty or index
+  const activeKey = (page === 'index' || page === '') ? 'home' : page;
+
+  const links = document.querySelectorAll('.nav-links a');
+  links.forEach(link => {
+    if (link.dataset.link === activeKey) {
+      link.style.color = 'var(--primary-color)';
+    } else {
+      link.style.color = ''; // Reset others
+    }
+  });
+}
 
 // ---------------------------------------------------------
 // 5. Dynamic Style Injection

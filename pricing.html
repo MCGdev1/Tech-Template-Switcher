@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing & Plans | Monorepo Visualizer Premium</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <meta property="og:image" content="og-image.png">
+  <meta property="og:title" content="Pricing & Plans | Monorepo Visualizer Premium">
+  <meta name="description"
+    content="Choose the right plan for your team. From open source to enterprise-grade monorepo visualization and AI optimization.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pricing.css">
+</head>
+
+<body>
+  <div class="animated-bg">
+    <div class="lava-blob"></div>
+  </div>
+
+  <!-- Navigation -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- Hero -->
+  <header class="pricing-hero">
+    <div class="max-width">
+      <span class="badge">
+        <div class="badge-bg"></div>
+        FLEXIBLE PLANS
+      </span>
+      <h1 class="hero-title">
+        SCALE YOUR <span class="text-gradient">ARCHITECTURE</span>
+      </h1>
+      <p class="hero-desc">
+        Choose the plan that fits your team's velocity. From individual innovators to enterprise-grade organizations,
+        we have the infrastructure to support your growth.
+      </p>
+
+      <!-- Toggle Switch -->
+      <div class="pricing-toggle-container">
+        <span class="toggle-label active" id="monthlyLabel">MONTHLY</span>
+        <div class="toggle-switch" id="billingToggle">
+          <div class="toggle-circle"></div>
+        </div>
+        <span class="toggle-label" id="yearlyLabel">YEARLY <span
+            style="color: var(--primary-color); font-size: 0.7em;">-20%</span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Pricing Cards -->
+  <main class="max-width">
+    <div class="pricing-grid">
+      <!-- Starter Plan -->
+      <div class="pricing-card">
+        <div class="card-glow"></div>
+        <div class="plan-header">
+          <h3 class="plan-name">STARTER</h3>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount" data-monthly="0" data-yearly="0">0</span>
+            <span class="period">/mo</span>
+          </div>
+          <p class="plan-desc">Perfect for open source projects and individual developers.</p>
+        </div>
+        <div class="plan-features">
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Up to 50 Packages
+          </div>
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Basic Dependencies Graph
+          </div>
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Community Support
+          </div>
+        </div>
+        <button class="btn btn-outline full-width">START FREE</button>
+      </div>
+
+      <!-- Pro Plan -->
+      <div class="pricing-card popular">
+        <div class="popular-tag">MOST POPULAR</div>
+        <div class="card-glow"></div>
+        <div class="plan-header">
+          <h3 class="plan-name">PRO</h3>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount" data-monthly="29" data-yearly="24">29</span>
+            <span class="period">/mo</span>
+          </div>
+          <p class="plan-desc">Advanced tools for growing teams and complex architectures.</p>
+        </div>
+        <div class="plan-features">
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Up to 500 Packages
+          </div>
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Blast Radius Analysis
+          </div>
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Circular Dependency Detection
+          </div>
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Priority Email Support
+          </div>
+        </div>
+        <button class="btn btn-primary full-width">
+          <div class="btn-glow"></div>
+          START TRIAL
+        </button>
+      </div>
+
+      <!-- Enterprise Plan -->
+      <div class="pricing-card">
+        <div class="card-glow"></div>
+        <div class="plan-header">
+          <h3 class="plan-name">ENTERPRISE</h3>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount" data-monthly="99" data-yearly="79">99</span>
+            <span class="period">/mo</span>
+          </div>
+          <p class="plan-desc">Full-scale infrastructure control for large organizations.</p>
+        </div>
+        <div class="plan-features">
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Unlimited Packages
+          </div>
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Neural Optimization Engine
+          </div>
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Custom Integrations & API
+          </div>
+          <div class="feature-item">
+            <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+            Dedicated Success Manager
+          </div>
+        </div>
+        <button class="btn btn-outline full-width">CONTACT SALES</button>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+      <h2 class="section-title" style="text-align: center; margin-bottom: 3rem;">FREQUENTLY ASKED QUESTIONS</h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4 class="faq-question">
+            Does it work with Nx and Turbo?
+            <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </h4>
+          <div class="faq-answer">
+            Yes! Monorepo Visualizer Premium has specific integrations for Nx, Turborepo, Lerna, and even Bazel. We
+            parse your workspace configuration automatically.
+          </div>
+          <div class="faq-glow"></div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">
+            Can I host this on-premise?
+            <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </h4>
+          <div class="faq-answer">
+            Absolutely. The Enterprise plan includes a Docker container that you can deploy within your VPC for maximum
+            security and compliance.
+          </div>
+          <div class="faq-glow"></div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">
+            How accurate is the Blast Radius?
+            <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </h4>
+          <div class="faq-answer">
+            We achieve 99.9% accuracy by tracing the dependency graph at the AST level. We don't just look at
+            package.json; we analyze import statements and usage.
+          </div>
+          <div class="faq-glow"></div>
+        </div>
+
+        <div class="faq-item">
+          <h4 class="faq-question">
+            Is there a student discount?
+            <svg class="plus-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </h4>
+          <div class="faq-answer">
+            Yes, students and open source maintainers can apply for a free Pro license. Contact our support team with
+            your GitHub profile.
+          </div>
+          <div class="faq-glow"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <div id="footer-placeholder"></div>
+
+  <script>
+    // Simple FAQ toggle
+    document.querySelectorAll('.faq-item').forEach(item => {
+      item.addEventListener('click', () => {
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+  <script src="app.js"></script>
+</body>
+
+</html>
