@@ -1,5 +1,14 @@
+/**
+ * Main Application Logic
+ * Handles global interactions, scroll effects, and animations.
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Navbar scroll effect
+  // ---------------------------------------------------------
+  // 1. Navigation Bar Scroll Effect
+  // ---------------------------------------------------------
+  // Adds a semi-transparent background and reduces padding when
+  // the user scrolls down to create a "sticky" compact effect.
   const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 50) {
@@ -11,38 +20,52 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Intersection Observer for reveal animations
+  // ---------------------------------------------------------
+  // 2. Intersection Observer for Reveal Animations
+  // ---------------------------------------------------------
+  // Detects when elements enter the viewport and triggers a
+  // 'reveal-active' class to animate them in (fade up).
   const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
+    threshold: 0.1, // Trigger when 10% of element is visible
+    rootMargin: '0px 0px -50px 0px' // Offset to trigger slightly before/after
   };
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('reveal-active');
-        observer.unobserve(entry.target);
+        observer.unobserve(entry.target); // Only animate once
       }
     });
   }, observerOptions);
 
-  // Apply reveal classes to sections and cards
+  // Select elements to animate: Cards, Headers, Hero
   const revealElements = document.querySelectorAll('.stat-card, .feature-card, .section-header, .hero-content');
   revealElements.forEach(el => {
-    el.classList.add('reveal-init');
+    el.classList.add('reveal-init'); // Set initial hidden state
     observer.observe(el);
   });
 
-  // Add mouse parallax effect to the hero blob
+  // ---------------------------------------------------------
+  // 3. Mouse Parallax Effect
+  // ---------------------------------------------------------
+  // Moves the background "lava blob" slightly based on mouse position
+  // to create a dynamic, depth-based feel.
   const lavaBlob = document.querySelector('.lava-blob');
   document.addEventListener('mousemove', (e) => {
+    // Normalize coordinates (0 to 1)
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
 
+    // Apply translation scale
     lavaBlob.style.transform = `translate(${x * 20}px, ${y * 20}px) scale(1.2)`;
   });
 
-  // Smooth scroll for nav links (already handled by CSS but for robustness)
+  // ---------------------------------------------------------
+  // 4. Smooth Scrolling
+  // ---------------------------------------------------------
+  // fallback for smooth scrolling on anchor links if CSS 
+  // scroll-behavior is not supported or for custom control.
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
@@ -56,7 +79,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Add reveal styles dynamically to avoid FOUC or if CSS is not loaded
+// ---------------------------------------------------------
+// 5. Dynamic Style Injection
+// ---------------------------------------------------------
+// Injects the necessary CSS for the reveal animations. 
+// This ensures the animation logic works even if external CSS fails,
+// and keeps the animation definitions close to the JS logic.
 const style = document.createElement('style');
 style.textContent = `
     .reveal-init {
@@ -68,6 +96,7 @@ style.textContent = `
         opacity: 1;
         transform: translateY(0);
     }
+    /* Staggered delays for grid items */
     .feature-card:nth-child(2) { transition-delay: 0.1s; }
     .feature-card:nth-child(3) { transition-delay: 0.2s; }
     .feature-card:nth-child(4) { transition-delay: 0.3s; }

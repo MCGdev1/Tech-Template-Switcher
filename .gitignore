@@ -23,4 +23,6 @@ pricing.html
 pricing.css
 gallery.html
 *.png
+!favicon.png
+!og-image.png
 project_summary.md

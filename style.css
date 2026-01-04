@@ -1,3 +1,11 @@
+/**
+ * Global Stylesheet
+ * -----------------
+ * Contains all the styling for the MONOREPO.VIZ application.
+ * Uses CSS Variables for theming (Colors, Fonts) and consistent spacing.
+ * Includes keyframe animations for the dynamic background and interactions.
+ */
+
 :root {
   /* Sunset Orange - Primary */
   --luxe-orange-50: #FFF4ED;
