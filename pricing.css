@@ -68,27 +68,29 @@
   min-height: 3rem;
 }
 
-.tier-features {
+.plan-features {
   list-style: none;
-  margin-bottom: 4rem;
+  margin-bottom: 2rem;
   flex-grow: 1;
 }
 
-.tier-features li {
-  padding: 1rem 0;
+.feature-item {
+  padding: 0.75rem 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   display: flex;
   align-items: center;
   gap: 1rem;
   font-size: 0.95rem;
+  color: var(--text-dim);
 }
 
-.tier-features li:last-child {
+.feature-item:last-child {
   border-bottom: none;
 }
 
-.tier-features li svg {
+.check-icon {
   color: var(--primary-color);
+  flex-shrink: 0;
 }
 
 /* FAQ Section */
