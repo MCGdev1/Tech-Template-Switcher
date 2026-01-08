@@ -1,14 +1,16 @@
 # MONOREPO.VIZ | Luxe Edition
 
-> AI-Powered Monorepo Analysis Engine for elite developers. Experience molecular-level dependency mapping.
+> Frontend Prototype: AI-Powered Monorepo Analysis Engine for elite developers. Experience molecular-level dependency mapping.
 
 ![MONOREPO.VIZ Banner](og-image.png)
 
 ## Overview
 
-MONOREPO.VIZ is a next-generation visualization tool designed to help developers navigate complex monorepo architectures. By leveraging 3D force-directed graphs and AI-powered predictive analysis, it provides unprecedented clarity into dependency structures, build pathways, and potential conflict zones.
+MONOREPO.VIZ is a frontend prototype for a next-generation visualization tool designed to help developers navigate complex monorepo architectures. By leveraging 3D force-directed graphs and AI-powered predictive analysis, it provides unprecedented clarity into dependency structures, build pathways, and potential conflict zones.
 
 This "Luxe Edition" emphasizes not just functionality but a premium, immersive user experience with high-end aesthetics, smooth animations, and a responsive design.
+
+**Note**: This is a frontend-only template with no backend functionality. It serves as a concept/prototype to demonstrate the potential UI/UX of the application.
 
 ## Features
 
@@ -20,10 +22,15 @@ This "Luxe Edition" emphasizes not just functionality but a premium, immersive u
 
 ## Technology Stack
 
--   **Core**: HTML5, Vanilla JavaScript (ES6+)
+-   **Core**: HTML5, Vanilla JavaScript (ES6+) - Frontend only
 -   **Styling**: Vanilla CSS3 (Variables, Flexbox, Grid, Keyframe Animations)
--   **Rendering**: HTML5 Canvas / SVG for visualizations (Simulated in this template)
+-   **Rendering**: HTML5 Canvas / SVG for visualizations (Simulated in this prototype)
 -   **Fonts**: 'JetBrains Mono', 'Orbitron', 'Space Grotesk' via Google Fonts
+-   **Note**: This project contains only frontend code with no backend implementation
+
+## Project Nature
+
+This project is a frontend prototype/concept and does not represent a fully functional application. It is intended to showcase potential UI/UX designs and concepts for the MONOREPO.VIZ platform. All pages are static HTML with simulated functionality for demonstration purposes only.
 
 ## Getting Started
 
